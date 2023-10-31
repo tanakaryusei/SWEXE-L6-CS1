@@ -1,0 +1,7 @@
+<%= form_for @tweet , url: {action: :create} do |f| %>
+    <%= f.label :message, 'メッセージ' %>
+    <%= f.text_field :message %>
+    <%= f.label :file, "画像" %>
+    <%= f.file_field :file %>
+    <%= f.submit "送信" %>
+<% end %>

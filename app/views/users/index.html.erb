@@ -1,0 +1,11 @@
+<% @users.each do |user| %>
+<p>
+    <%= user.uid %>
+    <%= user.pass %>
+    <%= link_to "削除", "/users/#{user.id}" , data:{turbo_method: :delete} %>
+</p>
+    
+<% end %>
+
+<%= link_to "新規登録", new_user_path %> <br>
+<%= link_to "ログイン画面へ", top_main_path %>
