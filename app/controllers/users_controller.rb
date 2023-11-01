@@ -12,7 +12,7 @@ class UsersController < ApplicationController
       redirect_to new_user_path
     else
       @userpass = BCrypt::Password.create(pass: params[:user][:pass])
-      @user =User.new(uid: params[:user][:uid], pass: @userpass)
+      @user = User.new(uid: params[:user][:uid], pass: @userpass)
       @user.save
       redirect_to controller: :top, action: :main
     end

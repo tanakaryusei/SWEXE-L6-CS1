@@ -10,12 +10,12 @@ class TopController < ApplicationController
 
   def login
     if User.find_by(uid: params[:uid])
-      #if BCrypt::Password.new(@userpass) == params[:pass]
-      session[:login_uid] = params[:uid]
-      redirect_to tweets_path
-      #else
-        #render "error"
-      #end
+      if BCrypt::Password.new(@userpass) == params[:pass]
+        session[:login_uid] = params[:uid]
+        redirect_to tweets_path
+      else
+        render "error"
+      end
     else
       render "error"
     end
