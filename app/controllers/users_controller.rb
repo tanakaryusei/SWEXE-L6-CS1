@@ -11,9 +11,8 @@ class UsersController < ApplicationController
     if User.find_by(uid: params[:user][:uid])
       redirect_to new_user_path
     else
-      @userpass = BCrypt::Password.create(pass: params[:user][:pass])
-      @user = User.new(uid: params[:user][:uid], pass: @userpass)
-      @user.save
+      user = User.new(uid: params[:user][:uid], password: params[:user][:password],password_confirmation: params[:user][:password_confirmation])
+      user.save
       redirect_to controller: :top, action: :main
     end
   end

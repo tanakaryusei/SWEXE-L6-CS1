@@ -9,15 +9,16 @@ class TopController < ApplicationController
   end
 
   def login
-    if User.find_by(uid: params[:uid])
-      if BCrypt::Password.new(@userpass) == params[:pass]
-        session[:login_uid] = params[:uid]
+    user = User.find_by(uid: params[:uid])
+    if user != nil
+      login_pass = BCrypt::Password.new(user.pass)
+      if login_pass == params[:pass]
+        session[:login_uid] = user.uid
         redirect_to tweets_path
       else
         render "error"
       end
-    else
-      render "error"
+    
     end
       
   end
